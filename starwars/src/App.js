@@ -15,12 +15,13 @@ const App = () => {
 
   // set a state for the data
   const [characters, setCharacters] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
 
   // Grab rick and marty data
   useEffect(() => {  
     axios
-        .get(`https://rickandmortyapi.com/api/character/?page=1`)
+        .get(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
         .then(response => {
             console.log(response.data.results);
             setCharacters(response.data.results);
@@ -29,13 +30,18 @@ const App = () => {
             console.log(err);
         }
         );
-}, [])
+}, [currentPage])
 
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      <CharacterContainer characters={characters}/>
+      <CharacterContainer characters={characters} />
+
+      
+
+
     </div>
+    
   );
 }
 

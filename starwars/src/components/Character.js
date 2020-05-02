@@ -12,11 +12,11 @@ function CharacterContainer(props) {
     return (
         <div className="deckContainer">
             <section className='charSection'>
-        
-            {props.characters.map((character, i) => {
-                return <CharacterCard character={character} />;
-            })}
-        
+
+                {props.characters.map((character, i) => {
+                    return <CharacterCard key={character.id} character={character} />;
+                })}
+
             </section>
         </div>
     );
@@ -25,17 +25,19 @@ function CharacterContainer(props) {
 }
 
 function CharacterCard(props) {
-    console.log(props);
+    //console.log(props);
 
     return (
         <Card className="card">
             <CardImg className="img" top width="100%" src={props.character.image} alt="Card image cap" />
-            <CardBody>
-                <CardTitle>{props.character.name}</CardTitle>
-                <CardSubtitle>{props.character.gender}</CardSubtitle>
-                <CardText></CardText>
-                <Button></Button>
-            </CardBody>
+            <div>
+                <p className="name">{props.character.name}</p>
+                <p className="charInfo">Species: {props.character.species}</p>
+                <p className="charInfo">Status: {props.character.status}</p>
+                <p className="charInfo">Location: {props.character.location.name}</p>
+                <p className="charInfo">Origin: {props.character.origin.name}</p>
+            </div>
+
         </Card>
     );
 }

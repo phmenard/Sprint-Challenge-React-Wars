@@ -1,6 +1,6 @@
 .img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 .deckContainer{
@@ -19,6 +19,16 @@
     
 
 .card {
-    width: 150px;
+    display: block;
+    
+    width: 200px;
     margin: 1%;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.charInfo {
+    font-size: 12px;
 }
