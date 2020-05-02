@@ -39,6 +39,7 @@ const App = () => {
   useEffect(() => {
     axios
       .get(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
+      //.get(`https://rickandmortyapi.com/api/character/`)
       .then(response => {
         console.log(response.data.results);
         setCharacters(response.data.results);
