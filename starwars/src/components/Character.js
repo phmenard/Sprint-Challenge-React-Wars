@@ -7,6 +7,41 @@ import {
     CardSubtitle, CardBody
 } from 'reactstrap';
 
+function SearchChar(character, searchString) {
+
+    if (searchString) {
+
+        const name = character.name.toLowerCase();
+        if (name.search(searchString.toLowerCase()) != -1) {
+            return true;
+        }
+
+        const species = character.species.toLowerCase();
+        if (species.search(searchString.toLowerCase()) != -1) {
+            return true;
+        }
+
+        const status = character.status.toLowerCase();
+        if (status.search(searchString.toLowerCase()) != -1) {
+            return true;
+        }
+
+        const location = character.location.name.toLowerCase();
+        if (location.search(searchString.toLowerCase()) != -1) {
+            return true;
+        }
+
+        const charOrigin = character.origin.name.toLowerCase();
+        if (charOrigin.search(searchString.toLowerCase()) != -1) {
+            return true;
+        }
+    } else {
+        return true;
+    }
+
+    return false;
+}
+
 function CharacterContainer(props) {
 
     return (
@@ -14,9 +49,10 @@ function CharacterContainer(props) {
             <section className='charSection'>
 
                 {props.characters.map((character, i) => {
-                    return <CharacterCard key={character.id} character={character} />;
+                    if (SearchChar(character, props.searchString)) {
+                        return <CharacterCard key={character.id} character={character} />;
+                    }
                 })}
-
             </section>
         </div>
     );
@@ -36,6 +72,7 @@ function CharacterCard(props) {
                 <p className="charInfo">Status: {props.character.status}</p>
                 <p className="charInfo">Location: {props.character.location.name}</p>
                 <p className="charInfo">Origin: {props.character.origin.name}</p>
+                <p className="charInfo">Episodes: {props.character.episode.length}</p>
             </div>
 
         </Card>

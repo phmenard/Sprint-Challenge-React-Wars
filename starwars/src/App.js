@@ -1,7 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
-import CharacterContainer from './components/Character' ;
+import CharacterContainer from './components/Character';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 
 import './App.css';
 
@@ -16,32 +18,67 @@ const App = () => {
   // set a state for the data
   const [characters, setCharacters] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchString, setSearchString] = useState();
+
+  let searchStringState = "";
+  
+  function handleSubmit(event) {
+    console.log(searchStringState)
+    setSearchString(searchStringState);
+    event.preventDefault();
+  }
+
+  function handleChange(event) {
+    searchStringState = event.target.value;
+    
+  }
+
 
 
   // Grab rick and marty data
-  useEffect(() => {  
+  useEffect(() => {
     axios
-        .get(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
-        .then(response => {
-            console.log(response.data.results);
-            setCharacters(response.data.results);
-        })
-        .catch(err => {
-            console.log(err);
-        }
-        );
-}, [currentPage])
+      .get(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
+      .then(response => {
+        console.log(response.data.results);
+        setCharacters(response.data.results);
+        window.scrollTo(0, 0);
+      })
+      .catch(err => {
+        console.log(err);
+      }
+      );
+  }, [currentPage, searchString])
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
-      <CharacterContainer characters={characters} />
+      <h1  className="Header">Characters</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Search:
+          <input type="text"  onChange={handleChange} /></label>
+        <input type="submit" value="Submit" />
+      </form>
 
-      
+      <CharacterContainer characters={characters} searchString={searchString}/>
+
+      <div>
+      <button className="button" onClick={() => {
+          if(currentPage !== 1){
+          setCurrentPage(currentPage - 1);
+          }
+        }}>Prev</button>
+
+        <button className="button" onClick={() => {
+          setCurrentPage(currentPage + 1);
+          
+        }}>Next</button>
+
+      </div>
 
 
     </div>
-    
+
   );
 }
 
