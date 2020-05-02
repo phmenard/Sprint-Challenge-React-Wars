@@ -1,0 +1,24 @@
+.img {
+    width: 150px;
+    height: 150px;
+}
+
+.deckContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.charSection{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+}
+    
+
+.card {
+    width: 150px;
+    margin: 1%;
+}
