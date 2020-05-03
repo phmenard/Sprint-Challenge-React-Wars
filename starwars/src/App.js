@@ -63,8 +63,9 @@ const App = () => {
     <div className="App">
       <h1 className="Header">Characters</h1>
       <form className="searchForm" onSubmit={handleSubmit}>
-        <input type="text" onChange={handleChange} placeholder="Search" />
-        <input type="submit" value="Submit" />
+        <input className="searchImput" type="text" onChange={handleChange} placeholder="Search" />
+        
+        <Button className='searchButton' color="secondary" size="sm" type="submit">Search</Button>
       </form>
 
       <CharacterContainer className="characters" characters={characters} searchString={searchString} setCurrentPage={setCurrentPage} />

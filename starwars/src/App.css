@@ -17,6 +17,16 @@
   background-color: #443e3e;
   text-shadow: 1px 1px 5px #fff;
 }
+
+.searchButton {
+  background-color: #443e3e;
+  text-shadow: 1px 1px 5px #fff;
+  height: 30px;
+}
+
+.searchImput {
+  height: 30px;
+}
 /* write your parent styles in here for your App.js */
 
 .formContainer {
@@ -25,6 +35,9 @@
 }
 
 .searchForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed; /* Set the navbar to fixed position */
   top: 50; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
