@@ -30,8 +30,10 @@
 /* write your parent styles in here for your App.js */
 
 .formContainer {
-  border: 2px solid blue;
-  background-color: rgb(228, 236, 117);
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  
 }
 
 .searchForm{
@@ -39,14 +41,15 @@
   justify-content: center;
   align-items: center;
   position: fixed; /* Set the navbar to fixed position */
-  top: 50; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
-  margin: 3%;
+  /*width: 100%; /* Full width */
+  margin-top: 8px;
+  margin-right: 25px;
+  
   
 }
 
 .characters {
-  margin: 3%;
+  margin: 1%;
 }
 
 .paganation{

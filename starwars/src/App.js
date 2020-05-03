@@ -20,6 +20,7 @@ const App = () => {
   const [searchString, setSearchString] = useState();
 
   let searchStringState = "";
+  let totalPages = 0;
 
   function handleSubmit(event) {
     console.log(searchStringState)
@@ -39,7 +40,8 @@ const App = () => {
       .get(`https://rickandmortyapi.com/api/character/?page=${currentPage}`)
       //.get(`https://rickandmortyapi.com/api/character/`)
       .then(response => {
-        console.log(response.data.results);
+        //console.log(response.data);
+        totalPages = response.data.info.pages;
         setCharacters(response.data.results);
         window.scrollTo(0, 0);
       })
@@ -49,11 +51,14 @@ const App = () => {
       );
   }, [currentPage, searchString])
 
-  function getNextPage(){
-    setCurrentPage(currentPage + 1);
+  function getNextPage() {
+    if (!currentPage == totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+
   }
 
-  function getPrevPage(){
+  function getPrevPage() {
     if (currentPage !== 1) {
       setCurrentPage(currentPage - 1);
     }
@@ -61,12 +66,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">Characters</h1>
-      <form className="searchForm" onSubmit={handleSubmit}>
-        <input className="searchImput" type="text" onChange={handleChange} placeholder="Search" />
-        
-        <Button className='searchButton' color="secondary" size="sm" type="submit">Search</Button>
-      </form>
+      <div className='formContainer'>
+        <h1 className="Header">Rick and Morty Characters</h1>
+        <form className="searchForm" onSubmit={handleSubmit}>
+          <input className="searchImput" type="text" onChange={handleChange} placeholder="Search" />
+
+          <Button className='searchButton' color="secondary" size="sm" type="submit">Search</Button>
+        </form>
+      </div>
 
       <CharacterContainer className="characters" characters={characters} searchString={searchString} setCurrentPage={setCurrentPage} />
 

@@ -7,6 +7,16 @@ import {
     CardSubtitle, CardBody
 } from 'reactstrap';
 
+const errorCard = {
+    image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.5VCCtUg1fcu7jLwBX1kXTQHaHR%26pid%3DApi&f=1',
+    name: '',
+    spicies: 'Your search returned nothing',
+    status: 'Try again',
+    location: '',
+    origin: '',
+    episode: ''
+}
+
 function SearchChar(character, searchString) {
     // search char data for the searchString
     if (searchString) {
@@ -42,11 +52,14 @@ function SearchChar(character, searchString) {
         }
     } else {
         // if no searchString given return the char
+        
         return true;
+        
     }
 
     // nothing found for search string don't return the char
-    return false;
+    errorCard.name = `Nothing found for ${searchString}`
+    return false
 }
 
 function CharacterContainer(props) {
@@ -58,6 +71,9 @@ function CharacterContainer(props) {
                 props.characters.map((character, i) => {
                     if (SearchChar(character, props.searchString)) {
                         return <CharacterCard key={character.id} character={character} />;
+                    }else{
+                        return <CharacterCard key={character.id} character={errorCard} />;
+                        
                     }
                 })}
 
