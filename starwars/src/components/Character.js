@@ -7,8 +7,6 @@ import {
     CardSubtitle, CardBody
 } from 'reactstrap';
 
-let currentPage = null;
-
 function SearchChar(character, searchString) {
 
     if (searchString) {
@@ -40,8 +38,6 @@ function SearchChar(character, searchString) {
     } else {
         return true;
     }
-
-    
 
     return false;
 }

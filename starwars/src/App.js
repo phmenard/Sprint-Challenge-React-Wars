@@ -2,8 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import CharacterContainer from './components/Character';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import { Button } from 'reactstrap';
 
 import './App.css';
 
@@ -50,29 +49,29 @@ const App = () => {
       );
   }, [currentPage, searchString])
 
+  function getNextPage(){
+    setCurrentPage(currentPage + 1);
+  }
+
+  function getPrevPage(){
+    if (currentPage !== 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  }
+
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Search:
-          <input type="text" onChange={handleChange} /></label>
+      <form className="searchForm" onSubmit={handleSubmit}>
+        <input type="text" onChange={handleChange} placeholder="Search" />
         <input type="submit" value="Submit" />
       </form>
 
-      <CharacterContainer characters={characters} searchString={searchString} setCurrentPage={setCurrentPage}/>
+      <CharacterContainer className="characters" characters={characters} searchString={searchString} setCurrentPage={setCurrentPage} />
 
-      <div>
-        <button className="button" onClick={() => {
-          if (currentPage !== 1) {
-            setCurrentPage(currentPage - 1);
-          }
-        }}>Prev</button>
-
-        <button className="button" onClick={() => {
-          setCurrentPage(currentPage + 1);
-
-        }}>Next</button>
+      <div className="paganation">
+        <Button className='button' color="secondary" size="sm" onClick={getPrevPage}>Prev</Button>
+        <Button className='button' color="secondary" size="sm" onClick={getNextPage}>Next</Button>
 
       </div>
 
