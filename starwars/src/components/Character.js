@@ -7,6 +7,8 @@ import {
     CardSubtitle, CardBody
 } from 'reactstrap';
 
+let currentPage = null;
+
 function SearchChar(character, searchString) {
 
     if (searchString) {
@@ -39,20 +41,24 @@ function SearchChar(character, searchString) {
         return true;
     }
 
+    
+
     return false;
 }
 
 function CharacterContainer(props) {
-
+    
     return (
         <div className="deckContainer">
             <section className='charSection'>
-
-                {props.characters.map((character, i) => {
+                
+                {
+                props.characters.map((character, i) => {
                     if (SearchChar(character, props.searchString)) {
                         return <CharacterCard key={character.id} character={character} />;
                     }
                 })}
+
             </section>
         </div>
     );

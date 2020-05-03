@@ -21,19 +21,18 @@ const App = () => {
   const [searchString, setSearchString] = useState();
 
   let searchStringState = "";
-  
+
   function handleSubmit(event) {
     console.log(searchStringState)
     setSearchString(searchStringState);
+    setCurrentPage(1);
     event.preventDefault();
   }
 
   function handleChange(event) {
     searchStringState = event.target.value;
-    
+
   }
-
-
 
   // Grab rick and marty data
   useEffect(() => {
@@ -53,26 +52,26 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1  className="Header">Characters</h1>
+      <h1 className="Header">Characters</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Search:
-          <input type="text"  onChange={handleChange} /></label>
+          <input type="text" onChange={handleChange} /></label>
         <input type="submit" value="Submit" />
       </form>
 
-      <CharacterContainer characters={characters} searchString={searchString}/>
+      <CharacterContainer characters={characters} searchString={searchString} setCurrentPage={setCurrentPage}/>
 
       <div>
-      <button className="button" onClick={() => {
-          if(currentPage !== 1){
-          setCurrentPage(currentPage - 1);
+        <button className="button" onClick={() => {
+          if (currentPage !== 1) {
+            setCurrentPage(currentPage - 1);
           }
         }}>Prev</button>
 
         <button className="button" onClick={() => {
           setCurrentPage(currentPage + 1);
-          
+
         }}>Next</button>
 
       </div>
