@@ -1,8 +1,61 @@
 .App {
+  
   text-align: center;
 }
+
 .Header {
   color: #443e3e;
   text-shadow: 1px 1px 5px #fff;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  background-color: rgb(228, 236, 117);
+}
+
+.button {
+  margin: 3%;
+  background-color: #443e3e;
+  text-shadow: 1px 1px 5px #fff;
+}
+
+.searchButton {
+  background-color: #443e3e;
+  text-shadow: 1px 1px 5px #fff;
+  height: 30px;
+}
+
+.searchImput {
+  height: 30px;
 }
 /* write your parent styles in here for your App.js */
+
+.formContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  
+}
+
+.searchForm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Set the navbar to fixed position */
+  /*width: 100%; /* Full width */
+  margin-top: 8px;
+  margin-right: 25px;
+  
+  
+}
+
+.characters {
+  margin: 1%;
+}
+
+.paganation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(228, 236, 117);
+}
